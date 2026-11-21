@@ -1,0 +1,24 @@
+[package]
+name = "notepust-search"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Search requests, literal and regex matching, replacement planning and workers"
+
+[dependencies]
+notepust-contracts = { path = "../contracts" }
+notepust-platform = { path = "../platform" }
+notepust-text-codec = { path = "../text-codec" }
+aho-corasick = { workspace = true }
+globset = { workspace = true }
+ignore = { workspace = true }
+memchr = { workspace = true }
+regex = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

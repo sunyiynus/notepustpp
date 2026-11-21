@@ -1,0 +1,20 @@
+[package]
+name = "notepust-platform"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Windows-native file identity, process supervision and platform paths"
+
+[dependencies]
+notepust-contracts = { path = "../contracts" }
+directories = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+windows = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

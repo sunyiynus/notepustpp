@@ -1,0 +1,18 @@
+[package]
+name = "notepust-large-file"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Bounded on-demand log reader, sparse line index and tail following"
+
+[dependencies]
+notepust-contracts = { path = "../contracts" }
+notepust-platform = { path = "../platform" }
+notepust-text-codec = { path = "../text-codec" }
+memchr = { workspace = true }
+regex = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

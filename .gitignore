@@ -1,0 +1,12 @@
+/target
+/kit-src
+/base-src
+/gpui-pre-0.3.12
+/win-src
+*.crate
+/crates/app/gen
+/pcre2-0.2.11
+/vendor/gpui-base/target
+/tests/generated
+/tests/fixtures/screen.png
+.DS_Store

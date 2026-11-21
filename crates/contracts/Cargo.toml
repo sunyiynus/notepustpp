@@ -1,0 +1,13 @@
+[package]
+name = "notepust-contracts"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+description = "Shared identities, coordinates, encodings and worker protocol for Notepust"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+uuid = { workspace = true }

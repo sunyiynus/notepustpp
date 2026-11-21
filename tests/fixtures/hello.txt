@@ -1,0 +1,3 @@
+first line: Notepust smoke test
+second line
+中文与 emoji 😀

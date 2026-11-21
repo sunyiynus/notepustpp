@@ -1,0 +1,106 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/contracts",
+    "crates/text-codec",
+    "crates/file-io",
+    "crates/storage",
+    "crates/search",
+    "crates/large-file",
+    "crates/platform",
+    "crates/search-worker",
+    "crates/app",
+    "crates/xtask",
+]
+default-members = [
+    "crates/contracts",
+    "crates/text-codec",
+    "crates/file-io",
+    "crates/storage",
+    "crates/search",
+    "crates/large-file",
+    "crates/platform",
+    "crates/search-worker",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+rust-version = "1.90"
+
+[workspace.dependencies]
+# UI runtime: pinned to the verified Kit release.
+gpui-kit = { version = "=0.10.0", features = [
+    "tree-sitter",
+    "tree-sitter-bash",
+    "tree-sitter-c",
+    "tree-sitter-cpp",
+    "tree-sitter-css",
+    "tree-sitter-html",
+    "tree-sitter-javascript",
+    "tree-sitter-markdown",
+    "tree-sitter-python",
+    "tree-sitter-rust",
+    "tree-sitter-sql",
+    "tree-sitter-toml",
+    "tree-sitter-tsx",
+    "tree-sitter-typescript",
+    "tree-sitter-yaml",
+] }
+
+# Domain libraries (see docs/README.md).
+aho-corasick = "1"
+anyhow = "1"
+blake3 = "1"
+chardetng = "1.0"
+clap = { version = "4", features = ["derive"] }
+directories = "6"
+encoding_rs = "0.8"
+futures = "0.3"
+globset = "0.4"
+ignore = "0.4"
+memchr = "2"
+pcre2 = "0.2"
+regex = "1"
+ropey = "=2.0.0-beta.1"
+rusqlite = { version = "0.43", features = ["bundled", "backup"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tempfile = "3"
+thiserror = "2"
+tree-sitter = "0.26"
+toml = "1"
+tracing = "0.1"
+tracing-appender = "0.2"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+unicode-segmentation = "1"
+unicode-width = "0.2"
+uuid = { version = "1", features = ["v4", "serde"] }
+windows = { version = "0.62", features = [
+    "Win32_Foundation",
+    "Win32_Storage_FileSystem",
+    "Win32_Security",
+    "Win32_System_Threading",
+    "Win32_System_JobObjects",
+    "Win32_System_Pipes",
+    "Win32_System_IO",
+    "Win32_System_Registry",
+] }
+
+
+[profile.dev.package."*"]
+opt-level = 1
+
+# Minimal upstream patch: Enter uses the document's preferred line ending so a
+# CRLF file does not silently accumulate LF-only lines. See
+# docs/adr/editor-kernel.md. The patch keeps the published 0.10.0 API and adds
+# only `PreferredLineEnding` / `set_preferred_line_ending`.
+[patch.crates-io]
+gpui-base = { path = "vendor/gpui-base" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+debug = "line-tables-only"
